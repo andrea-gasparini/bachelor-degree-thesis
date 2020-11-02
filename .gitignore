@@ -13,6 +13,14 @@
 .*.lb
 *.dvi
 
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
 *.pdf
 *.fdb_latexmk
 *.synctex.gz
