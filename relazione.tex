@@ -1,0 +1,53 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = it_IT
+
+\documentclass[Lau, binding=0.6cm, italian, noexaminfo]{sapthesis}
+
+\graphicspath{assets/}
+
+\usepackage{microtype}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenx}
+
+\usepackage{hyperref}
+\hypersetup
+{
+	pdftitle={Progettazione e sviluppo di piattaforma per la gestione di risorse linguistiche},
+	pdfauthor={Andrea Gasparini}
+}
+
+\usepackage{lipsum}
+\usepackage{curve2e}
+
+\title{Progettazione e sviluppo di piattaforma per la gestione di risorse linguistiche}
+\author{Andrea Gasparini}
+\IDnumber{1813486}
+\course{Informatica}
+\courseorganizer{Facoltà di Ingegneria dell'informazione, informatica e statistica}
+\AcademicYear{2019/2020}
+\copyyear{2020}
+\advisor{Prof. Roberto Navigli}
+\authoremail{gasparini.1813486@studenti.uniroma1.it}
+\versiondate{\today}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+\tableofcontents
+
+\mainmatter
+
+
+
+\backmatter
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{sapthesis}
+\bibliography{references}
+
+\end{document}
