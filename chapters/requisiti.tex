@@ -1,0 +1,151 @@
+% !TeX root = ../relazione.tex
+
+\chapter{Analisi dei requisiti}
+
+
+\section{Requisiti piattaforma}
+Gli attori\footnote{Coloro che interagiscono con il sistema} del sistema
+sono suddivisi nelle seguenti tipologie:
+\begin{itemize}
+	\item \textbf{Utente web}: usufruisce delle risorse di SapienzaNLP e utilizza
+	la piattaforma per richiederne l'accesso o per scaricarle
+	\item \textbf{Utente gestore}: gestisce le richieste effettuate, ne
+	può cambiare lo stato (ad esempio approvandole o rifiutandole) e può generare
+	dei link di download tramite cui scaricare le risorse associate
+\end{itemize}
+
+\paragraph{Selezione delle risorse}
+Gli utenti web possono selezionare una o più risorse per cui richiedere l'accesso,
+aggiungendo una descrizione dell'utilizzo che se ne vuole fare. A questa azione
+segue la generazione di un pdf contenente un resoconto e le informazioni legali
+che l'utente dovrà approvare per poter richiedere l'accesso alle risorse richieste.
+
+\paragraph{Richiesta di accesso} \label{par:access-request}
+Gli utenti web possono sottomettere una richiesta di accesso alle risorse, inserendo
+i propri dati e il pdf precedentemente generato, firmato dove richiesto.
+I dati richiesti all'utente sono i seguenti: nome, cognome, username, email,
+azienda/organizzazione e paese di provenienza.
+
+\paragraph{Autenticazione amministrazione}
+Gli utenti gestori, possono accedere ad un pannello di amministrazione
+effettuando l'autenticazione tramite username e password.
+
+\paragraph{Cronologia delle richieste}
+Gli utenti gestori, tramite il pannello di amministrazione, possono accedere allo
+storico di tutte le richieste di accesso alle risorse effettuate, ordinate
+cronologicamente.
+
+\paragraph{Dettaglio e accettazione/rifiuto richiesta}
+Gli utenti gestori, tramite il pannello di amministrazione, possono accedere ai
+dettagli delle richieste effettuate, visualizzarne il modulo pdf associato e
+cambiare lo stato della richiesta, approvandola o rifiutandola.
+La cronologia dei cambiamenti di stato, e l'utente che li ha effettuati, viene
+mostrata insieme ai dettagli.
+
+\paragraph{Generazione di link per il download}
+Gli utenti gestori, tramite il pannello di amministrazione, possono generare dei
+link di download per una o più risorse relativamente ad una richiesta di accesso.
+Questi link vengono inviati automaticamente all'email dell'utente che ha effettuato
+la richiesta, tramite cui potrà scaricare le risorse.
+
+
+
+\section{Raffinamento e funzionalità aggiuntive}
+I requisiti appena elencati rappresentano le funzionalità essenziali per permettere
+accesso e gestione delle risorse, ovvero lo scopo principale della piattaforma.
+È però necessario tenere anche conto dei dati relativi ad utenti gestori, alle
+risorse e alle loro versioni; è quindi seguita una fase di raffinamento dei
+requisiti e delle funzionalità.
+
+
+\subsection{Utenti}
+Viene aggiunta una terza tipologia di utente, l'\textbf{Utente amministratore}
+che può accedere al pannello di amministrazione tramite autenticazione e, oltre
+alle richieste effettuate, può visualizzare e gestire gli utenti, le risorse e
+le relative versioni. Può accedere a tutte le funzionalità della piattaforma.
+Le tipologie di presenti nella piattaforma sono quindi le seguenti:
+\begin{itemize}
+	\item Utente web
+	\item Utente gestore
+	\item Utente amministratore
+\end{itemize}
+
+
+\subsection{Autenticazione}
+Per semplificare il processo di inserimento dei dati da parte di un utente web
+che richiede l'accesso alle risorse (\ref{par:access-request}) ed evitare che
+per ogni ogni nuova richiesta debbano essere re-inseriti gli stessi dati, l'accesso
+alla piattaforma viene gestito da una procedura di autenticazione per tutti gli
+utenti. In questo modo se uno stesso utente effettua più volte delle richieste,
+i dati necessari saranno già presenti nel sistema e sarà necessario aggiungervi
+solamente il modulo pdf firmato.
+
+\paragraph{Registrazione}
+Viene quindi aggiunta la possibilità di registrarsi alla piattaforma inserendo i
+dati che erano previsti per le richieste di accesso alle risorse. Questa procedura
+permette di creare un nuovo utente web, che quindi non avrà accesso al pannello
+di amministrazione. La registrazione non prevede la scelta di una password, che
+viene invece generata automaticamente e inviata tramite email all'utente.
+
+\paragraph{Recupero password}
+Per tutte le tipologie di utente viene data la possibilità di generare una nuova
+password, inviata tramite email, che diventa permanente nel momento in cui
+viene utilizzata per effettuare l'accesso.
+
+\paragraph{Autenticazione}
+Ad esclusione di \textbf{Registrazione} e \textbf{Recupero password}, per utilizzare
+le funzionalità della piattaforma relative alla propria tipologia di utente,
+deve essere prima effettuata l'autenticazione inserendo username e password.
+
+
+\subsection{Gestione utenti}
+Le funzionalità descritte in questa sezione sono riservate ai soli utenti
+amministratori.
+
+\paragraph{Lista utenti esistenti}
+È possibile visualizzare una lista di tutti gli utenti registrati nella piattaforma
+e avere un resoconto delle relative informazioni principali.
+
+\paragraph{Dettaglio utente esistente}
+È possibile visualizzare e modificare i dati degli utenti, ad eccezione della
+password, e visualizzare uno storico:
+\begin{itemize}
+	\item delle richieste effettuate, se utente web
+	\item dei cambi di stato delle richieste, se utente gestore o amministratore
+\end{itemize}
+
+\paragraph{Disabilitazione utente esistente}
+È possibile disabilitare un utente, negandogli la possibilità di autenticarsi e,
+di conseguenza, di utilizzare qualunque funzionalità della piattaforma.
+Questa azione non elimina l'utente ed è reversibile, viene mantenuto lo storico
+delle richieste e dei cambi di stato effettuati.
+
+\paragraph{Creazione utente gestore}
+È possibile creare un nuovo utente gestore, abilitato ad accedere al pannello
+di amministrazione. Come per la registrazione di un utente web, la password viene
+generata automaticamente e inviata all'email specificata.
+
+
+\subsection{Gestione risorse}
+Le funzionalità descritte in questa sezione sono riservate ai soli utenti
+amministratori.
+
+\paragraph{Lista risorse esistenti}
+È possibile visualizzare una lista di tutte le risorse disponibili nella
+piattaforma e avere un resoconto delle relative informazioni principali.
+
+\paragraph{Dettaglio risorsa esistente}
+È possibile visualizzare e modificare i dati delle risorse e visualizzare le
+versioni associate.
+
+\paragraph{Eliminazione risorsa esistente}
+È possibile eliminare definitivamente dalla piattaforma una risorsa e tutte le
+versioni associate.
+
+\paragraph{Creazione nuova risorsa}
+È possibile aggiungere una nuova risorsa, specificando un nome, una descrizione
+e la licenza con cui viene fornita.
+
+\paragraph{Creazione e modifica versione risorsa}
+È possibile aggiungere e modificare una versione di una risorsa, specificandone
+il nome, la data di rilascio e il file a cui fa riferimento per il download.
