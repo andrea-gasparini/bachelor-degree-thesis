@@ -15,10 +15,11 @@ sono suddivisi nelle seguenti tipologie:
 \end{itemize}
 
 \paragraph{Selezione delle risorse}
-Gli utenti web possono selezionare una o più risorse per cui richiedere l'accesso,
-aggiungendo una descrizione dell'utilizzo che se ne vuole fare. A questa azione
-segue la generazione di un pdf contenente un resoconto e le informazioni legali
-che l'utente dovrà approvare per poter richiedere l'accesso alle risorse richieste.
+Gli utenti web possono selezionare una o più risorse tra quelle disponibili nella
+piattaforma per cui richiedere l'accesso, aggiungendo una descrizione obbligatoria
+per indicare l'utilizzo che se ne vuole fare. A questa azione segue la generazione
+di un pdf contenente un resoconto e le informazioni legali che l'utente dovrà
+obbligatoriamente approvare per poter richiedere l'accesso alle risorse selezionate.
 
 \paragraph{Richiesta di accesso} \label{par:access-request}
 Gli utenti web possono sottomettere una richiesta di accesso alle risorse, inserendo
@@ -40,13 +41,13 @@ Gli utenti gestori, tramite il pannello di amministrazione, possono accedere ai
 dettagli delle richieste effettuate, visualizzarne il modulo pdf associato e
 cambiare lo stato della richiesta, approvandola o rifiutandola.
 La cronologia dei cambiamenti di stato, e l'utente che li ha effettuati, viene
-mostrata insieme ai dettagli.
+registrata nel sistema e mostrata insieme ai dettagli della singola richiesta.
 
 \paragraph{Generazione di link per il download}
 Gli utenti gestori, tramite il pannello di amministrazione, possono generare dei
 link di download per una o più risorse relativamente ad una richiesta di accesso.
-Questi link vengono inviati automaticamente all'email dell'utente che ha effettuato
-la richiesta, tramite cui potrà scaricare le risorse.
+Questi link vengono inviati automaticamente all'email che l'utente ha specificato
+quando ha effettuato la richiesta, tramite cui l'utente potrà scaricare le risorse.
 
 
 
@@ -74,10 +75,10 @@ Le tipologie di presenti nella piattaforma sono quindi le seguenti:
 \subsection{Autenticazione}
 Per semplificare il processo di inserimento dei dati da parte di un utente web
 che richiede l'accesso alle risorse (\ref{par:access-request}) ed evitare che
-per ogni ogni nuova richiesta debbano essere re-inseriti gli stessi dati, l'accesso
-alla piattaforma viene gestito da una procedura di autenticazione per tutti gli
-utenti. In questo modo se uno stesso utente effettua più volte delle richieste,
-i dati necessari saranno già presenti nel sistema e sarà necessario aggiungervi
+per ogni ogni nuova richiesta debbano essere re-inseriti, l'accesso alla piattaforma
+viene gestito da una procedura di autenticazione per tutte le tipologie di utenti.
+In questo modo se uno stesso utente effettua più volte delle richieste, i dati
+necessari saranno già presenti nel sistema e sarà quindi necessario aggiungervi
 solamente il modulo pdf firmato.
 
 \paragraph{Registrazione}
