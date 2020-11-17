@@ -48,3 +48,29 @@ dell'utente.
 Per ogni richiesta effettuate viene quindi verificato che l'utente sia autenticato
 e che sia autorizzato ad effettuare eventuali operazioni riservate (ad esempio
 accedere al pannello di amministrazione).
+
+
+\section{Diagramma ER}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=\linewidth]{assets/diagrams/crows-foot-notation.png}
+	\cprotect\caption{notazione \textit{crow's foot}}
+	\label{fig:crows-foot-notation}
+\end{wrapfigure}
+
+Il diagramma in \autoref{fig:er-diagram} è stato progettato con MySQL WorkBench
+\cite{workbench:9-EER} ed utilizza la notazione \textit{crow's foot}
+\cite{wiki:crows-foot}, più orientata all'implementazione, in cui le relazioni
+sono rappresentate da linee che collegano le entità e la cui cardinalità è
+espressa tramite i simboli presenti alle estremità (\autoref{fig:crows-foot-notation}).
+
+%%%%%%%%%%%%%%%%%%%%
+{\color{red}\textbf{[\dots]}}
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{assets/diagrams/db-er-diagram.png}
+	\caption{Diagramma ER}
+	\label{fig:er-diagram}
+\end{figure}
