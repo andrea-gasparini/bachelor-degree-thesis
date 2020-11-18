@@ -21,9 +21,16 @@ per ogni entità del database è necessario definire:
 	\item Un'interfaccia \textbf{DAO} che definisce i metodi che si possono
 	utilizzare per interagire con la relativa entità del database, tra cui le
 	operazioni CRUD necessarie per assolvere i requisiti del sistema
+	\item Almeno una classe che implementi il DAO, responsabile dell'effettiva
+	connessione con il database e della logica con cui i metodi accedono ai dati
 \end{itemize}
 
 \lstinputlisting[language=Java, caption=Classe DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
+
+Questa struttura migliora ulteriormente la modularità e la flessibilità del
+progetto (\autoref{sec:architettura}); ad esempio se fosse necessario utilizzare
+una diversa tecnologia per il database sarebbe sufficiente una nuova
+implementazione del DAO, che ovviamente manterrebbe gli stessi metodi.
 
 \paragraph{Project Lombok}
 Una libreria open source che è stata molto utilizzata per ridurre i tempi di
