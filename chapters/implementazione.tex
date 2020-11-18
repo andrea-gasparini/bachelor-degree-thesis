@@ -1,0 +1,26 @@
+% !TeX root = ../relazione.tex
+
+\chapter{Implementazione}
+
+
+\section{Data tier}
+Questo modulo comprende il database, per il quale è stato scelto \textbf{MariaDB},
+una soluzione open source sviluppata dagli autori di MySQL, e implementa delle
+API per poter stabilire facilmente una connessione con esso ed effettuare
+modifiche e interrogazioni, mappando le operazioni \textbf{CRUD} (Create, Retrieve,
+Update e Delete).
+
+\paragraph{Pattern DAO}
+Per l'implementazione si è utilizzato \textbf{Java} come linguaggio di programmazione
+e il \textbf{Design Pattern DAO} (Data Access Object). Utilizzando questo pattern,
+per ogni entità del database è necessario definire:
+\begin{itemize}
+	\item Una classe \textbf{DTO} (Data Transfer Object), che rappresenta la
+	relativa entità, le cui istanze vengono utilizzate per lo scambio dei dati
+	con il database
+	\item Un'interfaccia \textbf{DAO} che definisce i metodi che si possono
+	utilizzare per interagire con la relativa entità del database, tra cui le
+	operazioni CRUD necessarie per assolvere i requisiti del sistema
+\end{itemize}
+
+\lstinputlisting[language=Java, caption=Classe DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
