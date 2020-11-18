@@ -46,3 +46,70 @@ per ogni campo, di un'implementazione del pattern Builder e di un metodo set per
 il campo \texttt{id}.
 
 \lstinputlisting[language=Java, label={code:user-dto}, caption=Classe DTO relativa all'entità \textit{user}]{assets/code/UserDTO.java}
+
+
+
+\section{Application tier}
+In questo modulo viene gestita la parte logica ed applicativa della piattaforma,
+tra cui il controllo della sessione utente e i vincoli derivanti dai requisiti;
+come ad esempio la possibilità di accedere ad alcune funzionalità solo per certe
+tipologie di utenti o il controllo per cui i link di download siano validi solo
+per le richieste approvate e solo per l'utente che ha effettuato la richiesta. 
+
+
+\subsection{Il framework Spring}
+Il linguaggio utilizzato è sempre \textbf{Java} ma accoppiato a \textbf{Spring},
+un framework per lo sviluppo di applicazioni web, nello specifico nella versione
+\textbf{Boot} \cite{spring:boot}, che ne semplifica la configurazione e garantisce
+la possibilità di avere un web server \textit{stand-alone} direttamente eseguendo
+la classe principale del progetto o effettuandone la build, che produrrà un file
+JAR eseguibile con la stessa funzionalità.
+
+\paragraph{Services} \label{par:spring-services}
+Per la gestione dell'invio delle email, della generazione del modulo pdf e
+dell'interazione con il file system per salvatare i moduli inviati e permettere
+il download delle risorse, sono state definite delle classi annotate come
+\texttt{@Service}, ovvero relative solo a parte della \textit{business logic}
+dell'applicazione. I Service vengono poi utilizzati nel resto del progetto
+tramite la \textbf{Dependency Injection} di Spring, che si occupa di fornire la
+stessa istanza a tutti i componenti che ne richiedono l'utilizzo. La forma di
+injection applicata è quella tramite il costruttore della classe 
+(\ref{code:constr-inj}) che viene parametrizzato automaticamente dal framework
+all'avvio dell'applicazione.
+
+\lstinputlisting[language=Java, label={code:constr-inj}, caption=Esempio di Constructor Injection per \texttt{EmailService}]{assets/code/AuthenticationController.constructor.java}
+
+\paragraph{Controllers}
+Tra i componenti principali del framework troviamo le classi Controller, definite
+tramite l'annotazione \texttt{@RestController} e adibite ad eseguire le funzionalità
+nel rispetto dei vincoli dell'applicazione. I metodi di queste classi vengono
+mappati a degli endpoint del web server che permettono la loro invocazione tramite
+richieste HTTP, creando così delle API accessibili tramite l'interfaccia utente.
+
+Ad esempio nella classe \texttt{AuthenticationController} è stato implementato un
+metodo \texttt{signUp} (\ref{code:auth-controller-signup}) che permette di
+effettuare la registrazione di un nuovo utente. Questo metodo, tramite
+l'annotazione \texttt{@PostMapping}, è accessibile effettuando una richiesta POST
+all'endpoint \textit{/signup}.
+
+Nel dettaglio, effettua dei controlli sulla validità dei parametri e sull'unicità
+di username e indirizzo email, per poi istanziare un nuovo oggetto \texttt{User},
+inviare un'email di conferma tramite il Service (\autoref{par:spring-services})
+che gestisce le email, inserire l'utente nel database tramite un oggetto DAO e
+infine associare un nuovo \texttt{AccessToken} all'utente per garantirgli la sessione.
+
+\lstinputlisting[language=Java, label={code:auth-controller-signup}, caption=Metodo \texttt{signUp} della classe \texttt{AuthenticationController}]{assets/code/AuthenticationController.signup.java}
+
+\paragraph{Filters}
+La validità delle sessioni utente e l'accesso alle funzionalità riservate per
+utenti amministratori o gestori, sono state gestite tramite dei pattern negli
+endpoint; utilizzando ad esempio \textit{/api/admin} come prefisso per tutti
+quelli su cui era necessario verificare che l'utente fosse un amministratore
+(\ref{code:admin-filter}).
+
+Definendo delle classi che estendono \texttt{OncePerRequestFilter} è stato
+possibile implementare dei controlli eseguiti prima di ogni richiesta che rispetti
+il pattern specificato, ritornando un codice di errore nel caso le condizioni
+non vengano soddisfatte o permettendo l'esecuzione della richiesta altrimenti.
+
+\lstinputlisting[language=Java, label={code:admin-filter}, caption=Filtro per verificare che l'utente possa accedere ad un endpoint riservato]{assets/code/AdminFilter.java}
