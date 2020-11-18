@@ -24,3 +24,18 @@ per ogni entità del database è necessario definire:
 \end{itemize}
 
 \lstinputlisting[language=Java, caption=Classe DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
+
+\paragraph{Project Lombok}
+Una libreria open source che è stata molto utilizzata per ridurre i tempi di
+scrittura e migliorare la leggibilità del codice è \textbf{Project Lombok};
+un \textit{Annotation processor} che, tramite delle annotazioni nel codice,
+sostituisce la scrittura di metodi molto comuni e simili tra loro (come
+\textit{setter} o \textit{getter}).
+Nelle classi che rappresentano dei dati, come le classi DTO, questo è stato
+essenziale per poter scrivere in poche righe un codice chiaro e funzionale;
+ad esempio, la classe \texttt{User} (\ref{code:user-dto}), grazie alle annotazioni
+\texttt{@Getter}, \texttt{@Builder} e \texttt{@Setter}, dispone di metodi get
+per ogni campo, di un'implementazione del pattern Builder e di un setter per il
+campo \texttt{id}.
+
+\lstinputlisting[language=Java, label={code:user-dto}, caption=Classe DTO relativa all'entità \textit{user}]{assets/code/UserDTO.java}
