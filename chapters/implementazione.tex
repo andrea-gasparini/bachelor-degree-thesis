@@ -12,8 +12,8 @@ Update e Delete).
 
 \paragraph{Pattern DAO}
 Per l'implementazione si è utilizzato \textbf{Java} come linguaggio di programmazione
-e il \textbf{Design Pattern DAO} (Data Access Object). Utilizzando questo pattern,
-per ogni entità del database è necessario definire:
+e il \textbf{Design Pattern DAO} (Data Access Object). Per ogni entità del database
+sono state quindi definite:
 \begin{itemize}
 	\item Una classe \textbf{DTO} (Data Transfer Object), che rappresenta la
 	relativa entità, le cui istanze vengono utilizzate per lo scambio dei dati
@@ -25,7 +25,7 @@ per ogni entità del database è necessario definire:
 	connessione con il database e della logica con cui i metodi accedono ai dati
 \end{itemize}
 
-\lstinputlisting[language=Java, caption=Classe DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
+\lstinputlisting[language=Java, caption=Interfaccia DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
 
 Questa struttura migliora ulteriormente la modularità e la flessibilità del
 progetto (\autoref{sec:architettura}); ad esempio se fosse necessario utilizzare
@@ -42,7 +42,7 @@ Nelle classi che rappresentano dei dati, come le classi DTO, questo è stato
 essenziale per poter scrivere in poche righe un codice chiaro e funzionale;
 ad esempio, la classe \texttt{User} (\ref{code:user-dto}), grazie alle annotazioni
 \texttt{@Getter}, \texttt{@Builder} e \texttt{@Setter}, dispone di metodi get
-per ogni campo, di un'implementazione del pattern Builder e di un setter per il
-campo \texttt{id}.
+per ogni campo, di un'implementazione del pattern Builder e di un metodo set per
+il campo \texttt{id}.
 
 \lstinputlisting[language=Java, label={code:user-dto}, caption=Classe DTO relativa all'entità \textit{user}]{assets/code/UserDTO.java}
