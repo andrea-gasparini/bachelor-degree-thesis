@@ -113,3 +113,194 @@ il pattern specificato, ritornando un codice di errore nel caso le condizioni
 non vengano soddisfatte o permettendo l'esecuzione della richiesta altrimenti.
 
 \lstinputlisting[language=Java, label={code:admin-filter}, caption=Filtro per verificare che l'utente possa accedere ad un endpoint riservato]{assets/code/AdminFilter.java}
+
+
+
+\section{Presentation tier}
+
+In questo modulo è stata implementata la \textbf{UI} (User Interface), ovvero il
+mezzo di comunicazione tra l'utente finale e i moduli precedenti. In questo caso
+si tratta di pagine web che presentano le informazioni e guidano l'utente nell'utilizzo
+delle funzionalità della piattaforma; che equivalgono a delle richieste HTTP
+inviate all'Application tier e a delle conseguenti risposte di conferma o di errore.
+
+\paragraph{Approccio component based}
+Per lo sviluppo si è scelta una logica basata su componenti applicata al
+paradigma object-oriented, implementata utilizzando \textbf{TypeScript} e JQuery.
+TypeScript è un linguaggio di programmazione che estende la sintassi di JavaScript
+aggiungendo una forte tipizzazione, le interfacce e altre utili caratteristiche;
+mentre JQuery è una libreria utilizzata principalmente per semplificare la
+creazione e la manipolazione degli elementi HTML e l'utilizzo di AJAX per
+effettuare le richieste.
+
+In questo modulo è stata quindi definita una classe astratta \texttt{AbstractWidget}
+per rappresentare i comportamenti comuni di ogni componente della UI. Per ogni elemento
+dell'interfaccia che avrebbe dovuto gestire della logica o delle richieste HTTP,
+come ad esempio un form per inserire dei dati, è stata implementata una sotto-classe
+specializzata a cui è delegata anche la generazione della relativa struttura HTML.
+
+Per quanto riguarda lo stile delle pagine è stato utilizzato Bootstrap per alcune
+classi CSS e per il grid-layout, così da garantire un design responsive. Inoltre,
+ad ogni Widget è stato associato un file SASS, ovvero un'estensione del classico
+CSS, per definire gli stili più specifici.
+
+
+\subsection{Autenticazione e registrazione}
+Le schermate e i widget per l'autenticazione e la registrazione implementano un
+form e la relativa richiesta AJAX. La struttura dei due widget è condivisa, di
+modo che il bottone per passare da una vista all'altra sia sempre la label sulla
+sinistra, mentre sulla destra ci sia sempre quello per effettuare l'azione.
+
+Una volta autenticati, si viene reindirizzati alla successiva schermata in base
+alla tipologia di utente, così che un utente web possa direttamente selezionare
+le risorse per cui richiedere accesso (v. \autoref{subsec:resources-selection}),
+mentre un utente gestore o amministratore possa avere da subito una panoramica
+sulle richieste (v. \autoref{subsec:submissions-list}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/login.png}
+	\caption{Autenticazione}
+	\label{fig:login}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/signup.png}
+	\caption{Registrazione}
+	\label{fig:signup}
+\end{figure}
+
+
+\subsection{Selezione delle risorse} \label{subsec:resources-selection}
+Come in tutte le altre schermate della home, l'interfaccia è divisa in due parti,
+con sulla sinistra una sidebar placeholder con i riferimenti Sapienza e sulla
+destra il widget principale. In questa schermata il widget si occupa di richiedere
+e mostrare la lista di tutte le risorse disponibili, oltre che di gestirne la
+selezione multipla e il filtro per parola chiave tramite la barra di ricerca.
+L'inserimento della descrizione relativa all'utilizzo previsto è gestito dallo
+stesso, con una transizione delle informazioni mostrate e dei bottoni disponibili.
+
+Una volta confermata l'operazione, viene effetuata una richiesta che, in caso di
+conferma, ritorna il modulo pdf da dover firmare, scaricato automaticamente dal
+client. L'upload del pdf firmato sarà poi possibile dalla schermata successiva
+(v. \autoref{subsec:pdf-upload}), accessibile dal menù di navigazione in alto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/resources-selection.png}
+	\caption{Selezione delle risorse}
+	\label{fig:resources-selection}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/request-description.png}
+	\caption{Inserimento descrizione dell'utilizzo}
+	\label{fig:request-description}
+\end{figure}
+
+
+\subsection{Upload del modulo pdf firmato} \label{subsec:pdf-upload}
+L'ultimo passo per richiedere l'accesso alle risorse è quello di effettuare
+l'upload del modulo pdf firmato. Questa operazione è stata implementata con un
+widget per gestire anche il drag and drop e i controlli sulla tipologia e sulla
+dimensione del file. Una volta effettuato il \textit{submit}, il server si occupa
+in ogni caso di controllare che il file sia in un formato valido e che contenga
+dei metadati di validazione e, in caso di successo, il client mostra una
+schermata di conferma (v. \autoref{fig:request-success}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/pdf-upload.png}
+	\caption{Upload modulo pdf firmato}
+	\label{fig:pdf-upload}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/request-success.png}
+	\caption{Conferma completamento richiesta}
+	\label{fig:request-success}
+\end{figure}
+
+
+\subsection{Gestione delle richieste effettuate} \label{subsec:submissions-list}
+Nelle schermate di amministrazione l'interfaccia perde la sidebar presente nella
+home in favore di una barra di navigazione che permette di accedere alle varie
+sezioni del pannello. L'accesso è limitato a soli utenti autorizzati e in caso
+il server notifichi una violazione si viene reindirizzati alla schermata di
+autenticazione. In questo caso sono presenti più widget, ognuno assolve una
+diversa funzionalità, per cui è possibile:
+\begin{itemize}
+	\item Visualizzare tutte le richieste effettuate, con la data di sottomissione
+	lo stato attuale e un bottone per aprirne il dettaglio (v. \autoref{fig:submissions-list})
+	\item Visualizzare i dettagli della richiesta, con la possibilità di
+	modificarne lo stato e di visualizzare il modulo pdf caricato dall'utente (v. \autoref{fig:submission-details})
+	\item Visualizzare lo storico dei cambiamenti di stato, con il relativo utente
+	che ha effettuato l'operazione (v. \autoref{fig:submission-details})
+	\item Visualizzare la lista delle risorse associate alla richiesta, con la
+	possibilità di selezionare per quali generare i link di downloadz (v. \autoref{fig:submission-details})
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/submissions-list.png}
+	\caption{Resoconto di tutte le richieste effettuate}
+	\label{fig:submissions-list}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/submission-details.png}
+	\caption{Dettaglio di una richiesta effettuata}
+	\label{fig:submission-details}
+\end{figure}
+
+
+\subsection{Gestione degli utenti}
+In queste schermate di amministrazione è possibile visualizzare un resoconto di
+tutti gli utenti registrati e di aprirne un dettaglio, in cui è possibile modificarne
+i dati e visualizare la cronologia delle azioni effettuate (richieste sottomesse
+o cambi di stato in base alla tipologia di utente). Per il widget relativo alla
+cronologia è stato riutilizzato quello già presente nel dettaglio delle richieste
+grazie all'approccio modulare basato su componenti che favorisce il riuso del codice.
+Allo stesso modo, per creare un nuovo utente viene utilizzando lo stesso widget
+che in \autoref{fig:user-details} permette la modifica dei dati di uno già esistente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/users-list.png}
+	\caption{Resoconto degli utenti registrati}
+	\label{fig:users-list}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/user-details.png}
+	\caption{Dettaglio di un utente}
+	\label{fig:user-details}
+\end{figure}
+
+
+\subsection{Gestione delle risorse}
+In queste schermate è stata implementata la gestione dell'elemento cardine della
+piattaforma, ovvero le risorse. Nel resoconto generale vengono mostrate le risorse
+registrate nel database con nome e descrizione, oltre alla possibilità di crearne
+di nuove. La selezione di una di esse permette di accedere al dettaglio, in cui
+è possibile modificarne i dati, eliminarla definitivamente e aggiungervi una nuova
+versione o modificare quelle disponibili.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/resources-list.png}
+	\caption{Resoconto delle risorse disponibili}
+	\label{fig:resources-list}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/ui/resource-details.png}
+	\caption{Dettaglio di una risorsa}
+	\label{fig:resource-details}
+\end{figure}
