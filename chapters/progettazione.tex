@@ -30,11 +30,11 @@ Ognuno dei tre livelli architetturali è associato ad un specifica categoria log
 	\item Il Presentation tier sarà la UI (User Interface) dei servizi per l’utente,
 	garantendogli la possibilità di interagire con gli altri livelli tramite
 	un'interfaccia grafica, in maniera trasparente
-	\item L'Application Tier si occupa della parte applicativa e logica,
+	\item L'Application tier si occupa della parte applicativa e logica,
 	include l’esecuzione di applicazioni, la logica che si occupa della convalida
 	dei dati e delle richieste/risposte nella comunicazione fra i processi degli
 	altri livelli
-	\item Il Data Tier include i servizi che gestiscono il database; che forniscono
+	\item Il Data tier include i servizi che gestiscono il database; che forniscono
 	i dati necessari al completamento delle richieste del livello Logico. In questo
 	caso la logica del server interagisce con la gestione, l’accesso e la sicurezza
 	dei dati
@@ -82,17 +82,18 @@ accedere al pannello di amministrazione).
 
 \section{Diagramma ER}
 
-\begin{wrapfigure}{r}{0.4\textwidth}
-	\includegraphics[width=\linewidth]{assets/diagrams/crows-foot-notation.png}
-	\cprotect\caption{notazione \textit{crow's foot}}
-	\label{fig:crows-foot-notation}
-\end{wrapfigure}
-
 Il diagramma in \autoref{fig:er-diagram} è stato progettato con MySQL WorkBench
 \cite{workbench:9-EER} ed utilizza la notazione \textit{crow's foot}
 \cite{wiki:crows-foot}, più orientata all'implementazione, in cui le relazioni
 sono rappresentate da linee che collegano le entità e la cui cardinalità è
 espressa tramite i simboli presenti alle estremità (\autoref{fig:crows-foot-notation}).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{assets/diagrams/crows-foot-notation.png}
+	\cprotect\caption{notazione \textit{crow's foot}}
+	\label{fig:crows-foot-notation}
+\end{figure}
 
 \paragraph{}
 Le tipologie di utenti sono unificate nella tabella \textit{user} e la
