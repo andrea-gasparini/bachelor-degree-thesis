@@ -3,7 +3,7 @@
 \chapter{Analisi dei requisiti}
 
 
-\section{Requisiti piattaforma}
+\section{Requisiti della piattaforma}
 Gli attori\footnote{Coloro che interagiscono con il sistema} del sistema
 sono suddivisi nelle seguenti tipologie:
 \begin{itemize}
@@ -64,7 +64,7 @@ Viene aggiunta una terza tipologia di utente, l'\textbf{Utente amministratore}
 che può accedere al pannello di amministrazione tramite autenticazione e, oltre
 alle richieste effettuate, può visualizzare e gestire gli utenti, le risorse e
 le relative versioni. Può accedere a tutte le funzionalità della piattaforma.
-Le tipologie di presenti nella piattaforma sono quindi le seguenti:
+Le tipologie presenti nella piattaforma sono quindi le seguenti:
 \begin{itemize}
 	\item Utente web
 	\item Utente gestore
@@ -74,7 +74,7 @@ Le tipologie di presenti nella piattaforma sono quindi le seguenti:
 
 \subsection{Autenticazione}
 Per semplificare il processo di inserimento dei dati da parte di un utente web
-che richiede l'accesso alle risorse (\ref{par:access-request}) ed evitare che
+che richiede l'accesso alle risorse (v. \ref{par:access-request}) ed evitare che
 per ogni ogni nuova richiesta debbano essere re-inseriti, l'accesso alla piattaforma
 viene gestito da una procedura di autenticazione per tutte le tipologie di utenti.
 In questo modo se uno stesso utente effettua più volte delle richieste, i dati
@@ -85,8 +85,7 @@ solamente il modulo pdf firmato.
 Viene quindi aggiunta la possibilità di registrarsi alla piattaforma inserendo i
 dati che erano previsti per le richieste di accesso alle risorse. Questa procedura
 permette di creare un nuovo utente web, che quindi non avrà accesso al pannello
-di amministrazione. La registrazione non prevede la scelta di una password, che
-viene invece generata automaticamente e inviata tramite email all'utente.
+di amministrazione.
 
 \paragraph{Recupero password}
 Per tutte le tipologie di utente viene data la possibilità di generare una nuova
@@ -123,8 +122,7 @@ delle richieste e dei cambi di stato effettuati.
 
 \paragraph{Creazione utente gestore}
 È possibile creare un nuovo utente gestore, abilitato ad accedere al pannello
-di amministrazione. Come per la registrazione di un utente web, la password viene
-generata automaticamente e inviata all'email specificata.
+di amministrazione.
 
 
 \subsection{Gestione risorse}
