@@ -5,10 +5,10 @@
 
 \section{Data tier}
 Questo modulo comprende il database, per il quale è stato scelto \textbf{MariaDB},
-una soluzione open source sviluppata dagli autori di MySQL, e implementa delle
-API per poter stabilire facilmente una connessione con esso ed effettuare
-modifiche e interrogazioni, mappando le operazioni \textbf{CRUD} (Create, Retrieve,
-Update e Delete).
+una soluzione open source sviluppata dagli autori di MySQL, e lo sviluppo delle
+delle API per poter stabilire facilmente una connessione con esso ed effettuare
+modifiche e interrogazioni, mappando quelle che si definiscono operazioni
+\textbf{CRUD} (Create, Retrieve, Update e Delete).
 
 \paragraph{Pattern DAO}
 Per l'implementazione si è utilizzato \textbf{Java} come linguaggio di programmazione
@@ -16,11 +16,11 @@ e il \textbf{Design Pattern DAO} (Data Access Object). Per ogni entità del data
 sono state quindi definite:
 \begin{itemize}
 	\item Una classe \textbf{DTO} (Data Transfer Object), che rappresenta la
-	relativa entità, le cui istanze vengono utilizzate per lo scambio dei dati
+	relativa entità e le cui istanze vengono utilizzate per lo scambio dei dati
 	con il database
 	\item Un'interfaccia \textbf{DAO} che definisce i metodi che si possono
 	utilizzare per interagire con la relativa entità del database, tra cui le
-	operazioni CRUD necessarie per assolvere i requisiti del sistema
+	operazioni CRUD necessarie
 	\item Almeno una classe che implementi il DAO, responsabile dell'effettiva
 	connessione con il database e della logica con cui i metodi accedono ai dati
 \end{itemize}
@@ -28,7 +28,7 @@ sono state quindi definite:
 \lstinputlisting[language=Java, caption=Interfaccia DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
 
 Questa struttura migliora ulteriormente la modularità e la flessibilità del
-progetto (\autoref{sec:architettura}); ad esempio se fosse necessario utilizzare
+progetto (v. \autoref{sec:architettura}); ad esempio se fosse necessario utilizzare
 una diversa tecnologia per il database sarebbe sufficiente una nuova
 implementazione del DAO, che ovviamente manterrebbe gli stessi metodi.
 
@@ -40,7 +40,7 @@ sostituisce la scrittura di metodi molto comuni e simili tra loro (come
 \textit{setter} o \textit{getter}).
 Nelle classi che rappresentano dei dati, come le classi DTO, questo è stato
 essenziale per poter scrivere in poche righe un codice chiaro e funzionale;
-ad esempio, la classe \texttt{User} (\ref{code:user-dto}), grazie alle annotazioni
+ad esempio, la classe \texttt{User} (v. \ref{code:user-dto}), grazie alle annotazioni
 \texttt{@Getter}, \texttt{@Builder} e \texttt{@Setter}, dispone di metodi get
 per ogni campo, di un'implementazione del pattern Builder e di un metodo set per
 il campo \texttt{id}.
@@ -58,7 +58,7 @@ per le richieste approvate e solo per l'utente che ha effettuato la richiesta.
 
 
 \subsection{Il framework Spring}
-Il linguaggio utilizzato è sempre \textbf{Java} ma accoppiato a \textbf{Spring},
+Il linguaggio utilizzato è \textbf{Java} accoppiato a \textbf{Spring},
 un framework per lo sviluppo di applicazioni web, nello specifico nella versione
 \textbf{Boot} \cite{spring:boot}, che ne semplifica la configurazione e garantisce
 la possibilità di avere un web server \textit{stand-alone} direttamente eseguendo
@@ -74,7 +74,7 @@ dell'applicazione. I Service vengono poi utilizzati nel resto del progetto
 tramite la \textbf{Dependency Injection} di Spring, che si occupa di fornire la
 stessa istanza a tutti i componenti che ne richiedono l'utilizzo. La forma di
 injection applicata è quella tramite il costruttore della classe 
-(\ref{code:constr-inj}) che viene parametrizzato automaticamente dal framework
+(v. \ref{code:constr-inj}) che viene parametrizzato automaticamente dal framework
 all'avvio dell'applicazione.
 
 \lstinputlisting[language=Java, label={code:constr-inj}, caption=Esempio di Constructor Injection per \texttt{EmailService}]{assets/code/AuthenticationController.constructor.java}
@@ -87,14 +87,14 @@ mappati a degli endpoint del web server che permettono la loro invocazione trami
 richieste HTTP, creando così delle API accessibili tramite l'interfaccia utente.
 
 Ad esempio nella classe \texttt{AuthenticationController} è stato implementato un
-metodo \texttt{signUp} (\ref{code:auth-controller-signup}) che permette di
+metodo \texttt{signUp} (v. \ref{code:auth-controller-signup}) che permette di
 effettuare la registrazione di un nuovo utente. Questo metodo, tramite
 l'annotazione \texttt{@PostMapping}, è accessibile effettuando una richiesta POST
 all'endpoint \textit{/signup}.
 
 Nel dettaglio, effettua dei controlli sulla validità dei parametri e sull'unicità
 di username e indirizzo email, per poi istanziare un nuovo oggetto \texttt{User},
-inviare un'email di conferma tramite il Service (\autoref{par:spring-services})
+inviare un'email di conferma tramite il Service (v. \autoref{par:spring-services})
 che gestisce le email, inserire l'utente nel database tramite un oggetto DAO e
 infine associare un nuovo \texttt{AccessToken} all'utente per garantirgli la sessione.
 
@@ -105,7 +105,7 @@ La validità delle sessioni utente e l'accesso alle funzionalità riservate per
 utenti amministratori o gestori, sono state gestite tramite dei pattern negli
 endpoint; utilizzando ad esempio \textit{/api/admin} come prefisso per tutti
 quelli su cui era necessario verificare che l'utente fosse un amministratore
-(\ref{code:admin-filter}).
+(v. \ref{code:admin-filter}).
 
 Definendo delle classi che estendono \texttt{OncePerRequestFilter} è stato
 possibile implementare dei controlli eseguiti prima di ogni richiesta che rispetti
