@@ -1085,7 +1085,7 @@
   \newcommand{\SAP@PhDthesistype}{Tesi di dottorato}
   \newcommand{\SAP@Specializationthesistype}{Tesi di Specializzazione}
   \newcommand{\SAP@LaMthesistype}{Tesi di Laurea Magistrale}
-  \newcommand{\SAP@Lauthesistype}{Tesi di Laurea}
+  \newcommand{\SAP@Lauthesistype}{Relazione di Tirocinio}
   \newcommand{\SAP@MasterPthesistype}{Tesi di Master di primo livello}
   \newcommand{\SAP@MasterSthesistype}{Tesi di Master di secondo livello}
   \newcommand{\SAP@TFAthesistype}{TFA. Relazione di tirocinio}
