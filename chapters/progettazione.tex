@@ -10,16 +10,17 @@ gestione dei dati (\textbf{Data tier}), alla logica funzionale (Logic o
 \textbf{Application tier}) e all'interfaccia utente (\textbf{Presentation tier});
 questi comunicano e scambiano dati tra loro con un approccio client-server.
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.6\textwidth]{assets/diagrams/3-tier-architecture.png}
-	\caption{Schema architettura web 3-tier}
-	\label{fig:3-tier-architecture}
-\end{figure}
-
 Con questa architettura è possibile raggiungere un buon livello di scalabilità
 e modularità, evitando di includere la logica dell’applicazione sia a livello del
 server che lato client (modello 2-tier).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{assets/diagrams/3-tier-resources-selection.png}
+	\caption{Selezione delle risorse con l'architettura 3-tier}
+	\label{fig:3-tier-resources-selection}
+\end{figure}
+
 Il terzo livello software inserito nel mezzo contiene la maggior parte della logica
 e si posiziona ad un livello intermedio in modo da essere disponibile ad ogni
 servizio del sistema. Nel momento in cui è necessario cambiare un componente di
