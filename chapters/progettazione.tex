@@ -94,6 +94,13 @@ Il diagramma in \autoref{fig:er-diagram} è stato progettato con MySQL WorkBench
 sono rappresentate da linee che collegano le entità e la cui cardinalità è
 espressa tramite i simboli presenti alle estremità (\autoref{fig:crows-foot-notation}).
 
+\paragraph{}
+Le tipologie di utenti sono unificate nella tabella \textit{user} e la
+suddivisione è gestita tramite la tabella \textit{user\_type}. Le relazioni di
+\textit{user} con \textit{submission\_change} e \textit{download\_link}
+rappresentano le operazioni effettuate dagli utenti gestori/amministratori per
+quanto riguarda il cambio stato e la generazione di link per scaricare le risorse.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=\textwidth]{assets/diagrams/db-er-diagram.png}
