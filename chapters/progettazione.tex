@@ -6,16 +6,9 @@
 \section{Architettura} \label{sec:architettura}
 Il progetto è basato su una architettura 3-tier \cite{wiki:3-tier-architecture},
 ovvero è suddiviso in 3 diversi moduli sviluppati separatamente e dedicati alla
-gestione dei dati (\textbf{Data tier}), alla logica funzionale (\textbf{Application tier})
-e all'interfaccia utente (\textbf{Presentation tier}); questi comunicano e
-scambiano dati tra loro con un approccio client-server.
-
-In questo caso il Presentation tier svolge il ruolo di client ed effettua delle
-richieste all'Application per ricevere le informazioni da mostrare all'utente
-o per  assolvere delle funzionalità; il Data tier svolge invece il ruolo di server
-per fornire i dati persistenti presenti nel database, mentre l'Application svolge
-entrambi i ruoli, facendo da tramite tra gli altri moduli e gestendo le logiche
-e i controlli definiti dai requisiti.
+gestione dei dati (\textbf{Data tier}), alla logica funzionale (Logic o
+\textbf{Application tier}) e all'interfaccia utente (\textbf{Presentation tier});
+questi comunicano e scambiano dati tra loro con un approccio client-server.
 
 \begin{figure}[ht]
 	\centering
@@ -24,10 +17,47 @@ e i controlli definiti dai requisiti.
 	\label{fig:3-tier-architecture}
 \end{figure}
 
-Questa tipologia di architettura garantisce maggiore scalabilità e manutenibilità,
-in quanto qualunque modulo può essere aggiornato o sostituito indipendentemente
-dal cambiamento di requisiti o tecnologie.
+Con questa architettura è possibile raggiungere un buon livello di scalabilità
+e modularità, evitando di includere la logica dell’applicazione sia a livello del
+server che lato client (modello 2-tier).
+Il terzo livello software inserito nel mezzo contiene la maggior parte della logica
+e si posiziona ad un livello intermedio in modo da essere disponibile ad ogni
+servizio del sistema. Nel momento in cui è necessario cambiare un componente di
+logica dell’applicazione è sufficiente modificare solo un "mattoncino" specifico del
+livello intermedio.
+Ognuno dei tre livelli architetturali è associato ad un specifica categoria logica:
+\begin{itemize}
+	\item Il Presentation tier sarà la UI (User Interface) dei servizi per l’utente,
+	garantendogli la possibilità di interagire con gli altri livelli tramite
+	un'interfaccia grafica, in maniera trasparente
+	\item L'Application Tier si occupa della parte applicativa e logica,
+	include l’esecuzione di applicazioni, la logica che si occupa della convalida
+	dei dati e delle richieste/risposte nella comunicazione fra i processi degli
+	altri livelli
+	\item Il Data Tier include i servizi che gestiscono il database; che forniscono
+	i dati necessari al completamento delle richieste del livello Logico. In questo
+	caso la logica del server interagisce con la gestione, l’accesso e la sicurezza
+	dei dati
+\end{itemize}
+Tra i vantaggi di questa architettura possiamo includere la distribuzione e la
+riusabilità del codice, in quanto tutte le logiche che vengono utilizzate dagli
+utenti finali sono nel server intermedio. Un'altra caratteristica è che questa
+separazione tra l'interfaccia utente, la logica ed i dati permette una maggiore
+flessibilità nello sviluppo di nuove funzionalità; ad esempio dato che le
+componenti server e logiche sono già testate, lo sviluppo di un nuovo componente
+nella UI sarà più rapido e con una fase di test più breve. In pratica un
+aggiornamento, il fix di un bug o l'implementazione di una nuova funzionalità di
+un singolo livello applicativo ha un impatto minimo sugli altri.
 
+L'approccio si riflette anche nella gerarchia delle competenze, in quanto gli
+eventuali team di sviluppo si possono separare in diverse tipologie per
+specializzarsi negli ambiti relativi ai 3 livelli dell'architettura: il front-end,
+il back-end ed il data-end. La scalabilità è un aspetto fondamentale di questa
+architettura in quanto separando i diversi livelli ognuno può scalare in termini
+di capacità e potenza indipendentemente dagli altri. Per esempio se stiamo ricevendo
+un numero elevato di richieste web che non si stanno traducendo in un carico
+direttamente proporzionale in richieste computazionali che caricano le applicazioni,
+possiamo scalare solo questo livello.
 
 \section{Sessione utente}
 Trattandosi di una piattaforma web le cui funzionalità sono pensate per essere
