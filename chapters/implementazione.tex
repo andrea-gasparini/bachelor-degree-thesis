@@ -28,9 +28,13 @@ Per ogni entità del database sono state quindi definite:
 \lstinputlisting[language=Java, caption=Interfaccia DAO relativa all'entità \textit{user}]{assets/code/UserDAO.java}
 
 Questa struttura migliora ulteriormente la modularità e la flessibilità del
-progetto (v. \autoref{sec:architettura}); ad esempio se fosse necessario utilizzare
-una diversa tecnologia per il database sarebbe sufficiente una nuova
-implementazione del DAO, che ovviamente manterrebbe gli stessi metodi.
+progetto (v. \autoref{sec:architettura}), in quanto l'Application tier può
+fare affidamento solamente sui metodi esposti dall'interfaccia DAO, ignorando quale
+sia la specifica implementazione.
+In questo modo se ad esempio fosse necessario utilizzare una diversa tecnologia
+per il database sarebbe sufficiente una nuova implementazione del DAO, che
+manterrebbe gli stessi metodi e non necessiterebbe quindi di effettuare ulteriori
+modifiche di adattamento.
 
 \paragraph{Project Lombok}
 Una libreria open source che è stata molto utilizzata per ridurre i tempi di
