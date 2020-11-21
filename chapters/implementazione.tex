@@ -128,28 +128,88 @@ si tratta di pagine web che presentano le informazioni e guidano l'utente nell'u
 delle funzionalità della piattaforma; che equivalgono a delle richieste HTTP
 inviate all'Application tier e a delle conseguenti risposte di conferma o di errore.
 
-\paragraph{Approccio component based}
+
+\subsection{Approccio component based}
 Per lo sviluppo si è scelta una logica basata su componenti applicata al
-paradigma object-oriented, implementata utilizzando \textbf{TypeScript} e JQuery.
-TypeScript è un linguaggio di programmazione che estende la sintassi di JavaScript
-aggiungendo una forte tipizzazione, le interfacce e altre utili caratteristiche;
-mentre JQuery è una libreria utilizzata principalmente per semplificare la
-creazione e la manipolazione degli elementi HTML e l'utilizzo di AJAX per
-effettuare le richieste.
+paradigma object-oriented, implementata utilizzando \textbf{TypeScript}.
+L'approccio utilizzato è quindi quello di sviluppare delle classi che rappresentino
+un elemento dinamico dell'interfaccia, a cui è delegata la generazione della propria
+struttura HTML, la definizione dello stile grafico CSS e della logica che permette
+di svolgere una specifica funzionalità.
 
-In questo modulo è stata quindi definita una classe astratta \texttt{AbstractWidget}
-per rappresentare i comportamenti comuni di ogni componente della UI. Per ogni elemento
-dell'interfaccia che avrebbe dovuto gestire della logica o delle richieste HTTP,
-come ad esempio un form per inserire dei dati, è stata implementata una sotto-classe
-specializzata a cui è delegata anche la generazione della relativa struttura HTML.
+È stata quindi definita una classe astratta \texttt{AbstractWidget} per rappresentare
+i comportamenti comuni di ogni componente della UI, come ad esempio il modo in cui
+vengono mostrati eventuali messaggi di errore o in cui viene gestito lo stato di
+attesa di dati da parte del server.
 
-Per quanto riguarda lo stile delle pagine è stato utilizzato Bootstrap per alcune
-classi CSS e per il grid-layout, così da garantire un design responsive. Inoltre,
-ad ogni Widget è stato associato un file SASS, ovvero un'estensione del classico
-CSS, per definire gli stili più specifici.
+\paragraph{TypeScript}
+La scelta di TypeScript \cite{typescriptlang} è ormai quasi uno standard nell'ambito dello sviluppo web.
+Si tratta di un linguaggio di programmazione open-source che estende la sintassi
+di JavaScript, rendendo compatibile il codice scritto con quest'ultimo per il
+compilatore TypeScript. La compilazione in questo caso (detta anche
+"transpilazione") produce infatti codice JavaScript.
+Il motivo per cui viene utilizzata questo linguaggio è dovuto alla caratteristica
+di JavaScript per cui non vengono effettuati controlli statici sui tipi di dato,
+che vengono convertiti implicitamente. Anche se questa caratteristica è stata uno
+dei motivi del suo successo, la mancanza di controlli all'atto della compilazione
+rende più difficile trovare degli errori, sopratutto quando si sviluppano
+applicazioni di grandi dimensioni o complessità.
+Tra i motivi principali per utilizzare TypeScript troviamo quindi:
+\begin{itemize}
+	\item Possibilità di annotare i tipi di dato con controllo in fase di compilazione
+	\item Inferenza di tipo (type-inference)
+	\item Aggiunta delle interfacce
+	\item Aggiunta degli enum
+	\item Aggiunta dei tipi generici
+\end{itemize}
 
 
-\subsection{Autenticazione e registrazione}
+\subsection{Richieste AJAX}
+Per effettuare lo scambio di dati con l'Application tier, e quindi le richieste
+alle API HTTP, è stato adottato un approccio asincrono tramite richieste
+\textbf{AJAX} (Asynchronous JavaScript and XML). Questo significa che la richiesta
+non sarà bloccante per l'interfaccia e che i dati saranno aggiornati nel momento
+in cui arriverà la risposta dal server, senza esplicito ricaricamento della pagina
+web. Nello specifico ogni componente gestisce e mostra un proprio stato di attesa,
+così che al completamento delle richieste effettuate si aggiorni dinamicamente in
+base al responso del server.
+
+Oltre che per semplificare la creazione e la manipolazione degli elementi HTML
+all'interno dei componenti, è stata utilizzata la libreria jQuery \cite{jquery}
+anche per effettuare le richieste AJAX, garantendo la compatibilità cross-browser.
+
+\paragraph{Le Promise in JavaScript}
+Per gestire le molteplici richieste da dover effettuare, è stata definita una
+funzione generica \texttt{apiRequest}, che prende come parametri l'url dell'endpoint
+a cui effettuare la richiesta e un oggetto facoltativo per specificare eventuali
+parametri richiesti dalle API. Ad ogni richiesta viene aggiunto il token relativo
+alla sessione come header di autorizzazione e aggiornato con quello che si riceve
+nella risposta del server.
+Questa funzione ritorna una \textbf{Promise} \cite{mdn:promise}, ovvero un oggetto
+che rappresenta un'operazione che non è stata ancora completata, utile per gestire
+computazioni asincrone. La richiesta AJAX all'interno del costruttore viene eseguita
+contemporaneamente alla creazione della Promise, associando il valore ritornato
+dal server in caso di successo alla funzione \texttt{resolve} o l'eventuale
+errore alla funzione \texttt{reject}.
+In questo modo i widget che necessitano di effettuare delle richieste API,
+possono utilizzare una funzione specifica che si occupa di effettuare la richiesta
+AJAX, mentre per gestirne il risultato sarà sufficiente utilizzare i metodi
+\texttt{.then()} e \texttt{.catch()} della Promise ritornata, rispettivamente per
+il caso di successo e il caso di errore. Entrambi i metodi
+prendono come parametro una funzione che verrà eseguita nel momento in cui
+l'operazione sarà completata, in questo caso a seguito della risposta del server.
+
+\lstinputlisting[language=Java, caption=Funzione \texttt{apiRequest} per effettuare le richieste AJAX]{assets/code/requests.apirequest.ts}
+
+
+\subsection{Le pagine realizzate}
+Per quanto riguarda lo stile delle pagine e dei widget è stato utilizzato Bootstrap
+principalmente per garantire un design responsive tramite il grid-system \cite{bootstrap:grid}
+e per alcune classi CSS relative agli elementi più semplici dell'interfaccia.
+Inoltre, ad ogni widget è stato associato un file SASS, ovvero un'estensione del
+classico CSS, per definire gli stili più specifici.
+
+\subsubsection{Autenticazione e registrazione}
 Le schermate e i widget per l'autenticazione e la registrazione implementano un
 form e la relativa richiesta AJAX. La struttura dei due widget è condivisa, di
 modo che il bottone per passare da una vista all'altra sia sempre la label sulla
@@ -175,8 +235,7 @@ sulle richieste (v. \autoref{subsec:submissions-list}).
 	\label{fig:signup}
 \end{figure}
 
-
-\subsection{Selezione delle risorse} \label{subsec:resources-selection}
+\subsubsection{Selezione delle risorse} \label{subsec:resources-selection}
 Come in tutte le altre schermate della home, l'interfaccia è divisa in due parti,
 con sulla sinistra una sidebar placeholder con i riferimenti Sapienza e sulla
 destra il widget principale. In questa schermata il widget si occupa di richiedere
@@ -204,8 +263,7 @@ client. L'upload del pdf firmato sarà poi possibile dalla schermata successiva
 	\label{fig:request-description}
 \end{figure}
 
-
-\subsection{Upload del modulo pdf firmato} \label{subsec:pdf-upload}
+\subsubsection{Upload del modulo pdf firmato} \label{subsec:pdf-upload}
 L'ultimo passo per richiedere l'accesso alle risorse è quello di effettuare
 l'upload del modulo pdf firmato. Questa operazione è stata implementata con un
 widget per gestire anche il drag and drop e i controlli sulla tipologia e sulla
@@ -228,8 +286,7 @@ schermata di conferma (v. \autoref{fig:request-success}).
 	\label{fig:request-success}
 \end{figure}
 
-
-\subsection{Gestione delle richieste effettuate} \label{subsec:submissions-list}
+\subsubsection{Gestione delle richieste effettuate} \label{subsec:submissions-list}
 Nelle schermate di amministrazione l'interfaccia perde la sidebar presente nella
 home in favore di una barra di navigazione che permette di accedere alle varie
 sezioni del pannello. L'accesso è limitato a soli utenti autorizzati e in caso
@@ -261,8 +318,7 @@ diversa funzionalità, per cui è possibile:
 	\label{fig:submission-details}
 \end{figure}
 
-
-\subsection{Gestione degli utenti}
+\subsubsection{Gestione degli utenti}
 In queste schermate di amministrazione è possibile visualizzare un resoconto di
 tutti gli utenti registrati e di aprirne un dettaglio, in cui è possibile modificarne
 i dati e visualizare la cronologia delle azioni effettuate (richieste sottomesse
@@ -286,8 +342,7 @@ che in \autoref{fig:user-details} permette la modifica dei dati di uno già esis
 	\label{fig:user-details}
 \end{figure}
 
-
-\subsection{Gestione delle risorse}
+\subsubsection{Gestione delle risorse}
 In queste schermate è stata implementata la gestione dell'elemento cardine della
 piattaforma, ovvero le risorse. Nel resoconto generale vengono mostrate le risorse
 registrate nel database con nome e descrizione, oltre alla possibilità di crearne
