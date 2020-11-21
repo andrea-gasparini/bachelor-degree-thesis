@@ -4,11 +4,15 @@
 
 
 \section{Requisiti della piattaforma}
+Inizialmente sono stati raccolti ed analizzati i requisiti principali della
+piattaforma, così da poterne definire ulteriori funzionalità e guidare le
+successive fasi dello sviluppo.
 Gli attori\footnote{Coloro che interagiscono con il sistema} del sistema
-sono suddivisi nelle seguenti tipologie:
+vengono suddivisi nelle seguenti tipologie:
+
 \begin{itemize}
 	\item \textbf{Utente web}: usufruisce delle risorse di SapienzaNLP e utilizza
-	la piattaforma per richiederne l'accesso o per scaricarle
+	la piattaforma per richiederne l'accesso e per scaricarle
 	\item \textbf{Utente gestore}: gestisce le richieste effettuate, ne
 	può cambiare lo stato (ad esempio approvandole o rifiutandole) e può generare
 	dei link di download tramite cui scaricare le risorse associate
@@ -99,47 +103,51 @@ deve essere prima effettuata l'autenticazione inserendo username e password.
 
 
 \subsection{Gestione utenti}
-Le funzionalità descritte in questa sezione sono riservate ai soli utenti
-amministratori.
+Per consentire un controllo completo della piattaforma, vengono aggiunte anche
+le funzionalità relative alla gestione degli utenti, rese disponibili ai soli
+utenti amministratori.
 
 \paragraph{Lista utenti esistenti}
 È possibile visualizzare una lista di tutti gli utenti registrati nella piattaforma
-e avere un resoconto delle relative informazioni principali.
+e avere un resoconto delle relative informazioni principali, come username e
+nome completo.
 
 \paragraph{Dettaglio utente esistente}
 È possibile visualizzare e modificare i dati degli utenti, ad eccezione della
-password, e visualizzare uno storico:
+password, e visualizzare lo storico delle attività, nello specifico:
 \begin{itemize}
-	\item delle richieste effettuate, se utente web
-	\item dei cambi di stato delle richieste, se utente gestore o amministratore
+	\item delle richieste effettuate, per gli utenti web
+	\item dei cambi di stato delle richieste, per gli utenti gestori o amministratori
 \end{itemize}
 
 \paragraph{Disabilitazione utente esistente}
 È possibile disabilitare un utente, negandogli la possibilità di autenticarsi e,
 di conseguenza, di utilizzare qualunque funzionalità della piattaforma.
-Questa azione non elimina l'utente ed è reversibile, viene mantenuto lo storico
-delle richieste e dei cambi di stato effettuati.
+Questa azione non elimina l'utente ed è reversibile, così che venga sempre
+mantenuto lo storico delle richieste e dei cambi di stato effettuati.
 
 \paragraph{Creazione utente gestore}
-È possibile creare un nuovo utente gestore, abilitato ad accedere al pannello
-di amministrazione.
+È possibile creare un nuovo utente gestore inserendo gli stessi dati necessari
+per la registrazione spontanea di un utente web. Il nuovo utente gestore sarà
+abilitato ad accedere al pannello di amministrazione, con le sole
+funzionalità previste di gestione delle richieste.
 
 
 \subsection{Gestione risorse}
-Le funzionalità descritte in questa sezione sono riservate ai soli utenti
-amministratori.
+Anche per quanto riguarda le risorse è importante consentire le funzionalità per
+la loro gestione, rendendole disponibili ai soli utenti amministratori.
 
 \paragraph{Lista risorse esistenti}
 È possibile visualizzare una lista di tutte le risorse disponibili nella
-piattaforma e avere un resoconto delle relative informazioni principali.
+piattaforma e avere una panoramica sulle relative informazioni principali.
 
 \paragraph{Dettaglio risorsa esistente}
-È possibile visualizzare e modificare i dati delle risorse e visualizzare le
-versioni associate.
+È possibile visualizzare in dettaglio e modificare i dati delle risorse, inoltre
+visualizzare le versioni disponibili associate ad essa.
 
 \paragraph{Eliminazione risorsa esistente}
-È possibile eliminare definitivamente dalla piattaforma una risorsa e tutte le
-versioni associate.
+È possibile eliminare definitivamente dalla piattaforma una risorsa e con essa
+tutte le versioni associate.
 
 \paragraph{Creazione nuova risorsa}
 È possibile aggiungere una nuova risorsa, specificando un nome, una descrizione
