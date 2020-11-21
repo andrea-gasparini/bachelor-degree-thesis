@@ -1,0 +1,81 @@
+\chapter{Conclusioni}
+
+
+In questa relazione è stato descritto il lavoro svolto durante l'attività di
+tirocinio, inizialmente presentando la necessità di una piattaforma web che permetta
+di raccogliere e rendere disponibili in un unico canale le risorse linguistiche
+di SapienzaNLP, per poi ripercorrere le principali fasi e scelte affrontate.
+
+Prima dello sviluppo di questo tirocinio era possibile che le modalità di accesso
+alle risorse fossero molto diverse diverse tra loro e questo comportava ovviamente
+delle difficoltà anche da un punto di vista di gestione. L'utilizzo di queste
+è inoltre sempre vincolato dal rispetto delle relative licenze, che solitamente
+venivano semplicemente fornite allegate alla risorse scaricate.
+
+Tra gli aspetti che sono stati migliorati troviamo quindi la possibilità di accedere,
+tramite un'unica coppia di username e password, a tutte le risorse pubblicate.
+La stessa piattaforma e la stessa modalità di autenticazione include inoltre
+anche la parte di gestione di quelle disponibili e di approvazione delle
+richieste effetuate dagli utenti. In questo modo è stata eliminata la dispersività
+che era presente in entrambi i casi ed è stato possibile definire delle modalità
+di accesso condivise per tutte le risorse, così da garantire anche una maggiore
+flessibilità in caso di eventuale necessità di modifiche.
+
+Un altro miglioramento rispetto alla precedente organizzazione è relativo alla
+generazione dinamica di un modulo pdf per la richiesta di accesso alle risorse.
+Da un punto di vista di fruibilità si ha il vantaggio di avere i dati dell'utente
+inseriti automaticamente, a differenza del classico approccio in cui il modulo è
+anonimo e richiede la compilazione nonostante il sistema che lo fornisce conosca
+già i dati necessari.
+Il modulo risolve inoltre la gestione delle licenze, in quanto quelle relative
+alle risorse richieste saranno incluse nel pdf, con relativa clausola specifica
+per approvarle esplicitamente firmando.
+
+L'aver realizzato la piattaforma con un approccio modulare ed estendibile è
+infine da considerare come il principale vantaggio. È stata infatti ridotta al
+minimo la dipendenza tra i vari livelli dell'architettura, così da rendere
+possibile facilmente future modifiche e nuove implementazioni. Il fatto che i dati
+vengano messi a disposizione tramite chiamate API lascia massima libertà sulla
+scelta delle tecnologie per lo sviluppo dell'interfaccia utente, consentendo ad
+esempio la creazione di un'equivalente applicazione mobile con le stesse
+funzionalità della versione web.
+Allo stesso modo la scelta di una nuova tecnologia per il database o per la gestione
+della logica applicativa comporterà sempre la sola implementazione del nuovo
+modulo.
+
+\paragraph{}
+Durante il tirocinio ho avuto modo di applicare alcuni dei concetti appresi nei
+vari corsi di studio, dalla gestione delle varie fasi di progettazione
+all'applicazione di buone tecniche e paradigmi di programmazione. Mi ha dato
+inoltre l’opportunità di imparare e approfondire alcune tecnologie e approcci,
+migliorando la mia conoscenza ed esperienza di progettazione e sviluppo per il web.
+
+
+
+\section{Sviluppi futuri}
+Essendosi conclusa insieme al tirocinio anche la fase più sostanziosa della
+realizzazione della piattaforma, è importante valutare a questo punto quelli che
+potrebbero essere degli sviluppi futuri per migliorare la qualità e l'utilità del
+lavoro svolto.
+
+\paragraph{Integrare un'area personale per gli utenti}
+La modalità di accesso alle risorse definita attualmente per la piattaforma prevede
+che l'utente riceva tramite email i link per il download, limitando l'utilizzo
+dell'interfaccia alla sola fase di richiesta.
+Implementando un'area personale, si potrebbe mostrare uno storico delle richieste
+effettuate, e grazie ad esso risolvere l'eventualità in cui se ne effettua
+più di una per le stesse risorse, ad esempio nel caso in cui non si è più in
+possesso dei link di download ricevuti tramite email. Inoltre potrebbe permettere
+la modifica dei dati inseriti in fase di registrazione, attualmente possibile solo
+tramite il pannello di amministrazione.
+
+\paragraph{Valutare tecnologie alternative}
+Essendo stato lo sviluppo e il testing della piattaforma svolto solamente in locale,
+in seguito al rilascio ufficiale si potrebbero effettuare delle nuove valutazioni
+sulle tecnologie utilizzate e sulle scelte effettuate. Ad esempio sulla tipologia
+di database, piuttosto che sul framework per lo sviluppo dell'Application tier.
+Ci possono essere molteplici motivi per cui un cambiamento di questo tipo
+potrebbe rendersi necessario, ad esempio per un discorso di performance o di
+consumi. Importante è quindi aver progettato il sistema per adattarsi facilmente
+anche a modifiche che comporterebbero la sostituzione di un intero livello
+architetturale (v. \autoref{sec:architettura}).
