@@ -84,25 +84,31 @@ accedere al pannello di amministrazione).
 
 \section{Diagramma ER}
 
-Il diagramma in \autoref{fig:er-diagram} è stato progettato con MySQL WorkBench
-\cite{workbench:9-EER} ed utilizza la notazione \textit{crow's foot}
-\cite{wiki:crows-foot}, più orientata all'implementazione, in cui le relazioni
-sono rappresentate da linee che collegano le entità e la cui cardinalità è
-espressa tramite i simboli presenti alle estremità (v. \autoref{fig:crows-foot-notation}).
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.4\textwidth]{assets/diagrams/crows-foot-notation.png}
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[width=\linewidth]{assets/diagrams/crows-foot-notation.png}
 	\cprotect\caption{notazione \textit{crow's foot}}
 	\label{fig:crows-foot-notation}
-\end{figure}
+\end{wrapfigure}
+
+Il diagramma in \autoref{fig:er-diagram} mostra una visione generale dei dati
+gestiti dal sistema e delle relazioni tra di essi. È stato realizzato con \textbf{MySQL WorkBench}
+\cite{workbench:9-EER} ed utilizza la notazione \textit{crow's foot} \cite{wiki:crows-foot},
+più orientata all'implementazione, in cui le relazioni sono rappresentate da linee
+che collegano le entità e la cui cardinalità è espressa tramite i simboli presenti
+alle estremità (v. \autoref{fig:crows-foot-notation}). La creazione di questo
+diagramma ha permesso di avere sempre chiara la struttura che il database stava
+prendendo e che avrebbe avuto in fase di implementazione, ma sopratutto ha il
+vantaggio di poter essere esportato direttamente in codice SQL, contenente la
+creazione delle tabelle e dei vincoli principali.
 
 \paragraph{}
-Le tipologie di utenti sono unificate nella tabella \textit{user} e la
-suddivisione è gestita tramite la tabella \textit{user\_type}. Le relazioni di
-\textit{user} con \textit{submission\_change} e \textit{download\_link}
-rappresentano le operazioni effettuate dagli utenti gestori/amministratori per
-quanto riguarda il cambio stato e la generazione di link per scaricare le risorse.
+Non essendo supportati i concetti di IS-A e Generalizzazione, è bene specificare
+che le tipologie di utenti sono state unificate nella tabella \textit{user} e che
+la suddivisione è comunque gestita tramite la tabella \textit{user\_type}.
+Le relazioni di \textit{user} con \textit{submission\_change} e
+\textit{download\_link} rappresentano le operazioni effettuate dagli utenti
+gestori/amministratori per quanto riguarda il cambio stato e la generazione di
+link per scaricare le risorse.
 
 \begin{figure}[ht]
 	\centering
