@@ -44,11 +44,11 @@ Tra i vantaggi di questa architettura possiamo includere la distribuzione e la
 riusabilità del codice, in quanto tutte le logiche che vengono utilizzate dagli
 utenti finali sono nel server intermedio. Un'altra caratteristica è che questa
 separazione tra l'interfaccia utente, la logica ed i dati permette una maggiore
-flessibilità nello sviluppo di nuove funzionalità; ad esempio dato che le
-componenti server e logiche sono già testate, lo sviluppo di un nuovo componente
-nella UI sarà più rapido e con una fase di test più breve. In pratica un
-aggiornamento, il fix di un bug o l'implementazione di una nuova funzionalità di
-un singolo livello applicativo ha un impatto minimo sugli altri.
+flessibilità nello sviluppo di nuove funzionalità; ad esempio partendo dal presupposto
+che le componenti server e logiche sono già testate, lo sviluppo di un nuovo
+componente nella UI sarà più rapido e con una fase di test più breve. In pratica
+un aggiornamento, il fix di un bug o l'implementazione di una nuova funzionalità
+di un singolo livello applicativo ha un impatto minimo sugli altri.
 
 L'approccio si riflette anche nella gerarchia delle competenze, in quanto gli
 eventuali team di sviluppo si possono separare in diverse tipologie per
@@ -60,6 +60,7 @@ un numero elevato di richieste web che non si stanno traducendo in un carico
 direttamente proporzionale in richieste computazionali che caricano le applicazioni,
 possiamo scalare solo questo livello.
 
+
 \section{Sessione utente}
 Trattandosi di una piattaforma web le cui funzionalità sono pensate per essere
 accessibili solo a seguito di autenticazione, la gestione della sessione utente
@@ -70,8 +71,8 @@ di un account valido o che si abbiano permessi sufficienti.
 
 \paragraph{Approccio basato su token}
 L'approccio utilizzato è quello basato su \textbf{token}, per cui a seguito
-di ogni autenticazione deve essere generato e associato all'utente un codice
-univoco, volto a verificare la sessione. Questo codice, detto \textit{token}, è
+di ogni autenticazione deve essere generato un codice univoco che viene associato
+all'utente, volto a verificare la sessione. Questo codice, detto \textit{token}, è
 definito come valido per un breve periodo di tempo, ma viene "rinnovato" ad ogni
 richiesta effettuata dal client verso l'Application tier, così da garantire la
 continuità della sessione, fino alla scadenza o al logout esplicito da parte
