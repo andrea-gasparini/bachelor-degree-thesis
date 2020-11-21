@@ -105,6 +105,11 @@ infine associare un nuovo \texttt{AccessToken} all'utente per garantirgli la ses
 \lstinputlisting[language=Java, label={code:auth-controller-signup}, caption=Metodo \texttt{signUp} della classe \texttt{AuthenticationController}]{assets/code/AuthenticationController.signup.java}
 
 \paragraph{Filters}
+I filtri possono essere utilizzati per introdurre funzionalità extra prima
+dell’esecuzione dei metodi di un controller, nel caso in cui vengano invocati
+tramite richiesta HTTP. In questo modo è possibile ad esempio implementare
+meccanismi di logging, autenticare e autorizzare gli utenti o gestire le eccezioni. 
+
 La validità delle sessioni utente e l'accesso alle funzionalità riservate per
 utenti amministratori o gestori, sono state gestite tramite dei pattern negli
 endpoint; utilizzando ad esempio \textit{/api/admin} come prefisso per tutti
