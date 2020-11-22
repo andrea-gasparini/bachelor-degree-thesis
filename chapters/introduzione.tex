@@ -6,10 +6,65 @@ L'oggetto del tirocinio è la progettazione e lo sviluppo di una piattaforma web
 per migliorare la gestione delle risorse linguistiche di \textbf{SapienzaNLP},
 il gruppo di ricerca del dipartimento di Informatica che si occupa di multilingual
 Natural Language Understanding.
-Un esempio di risorsa è \textbf{BabelNet} \cite{NavigliPonzetto:12aij}, una rete
-semantica multilingue consultabile online\footnote{\url{https://babelnet.org}},
-per cui è possibile effettuare richiesta di scaricarne la versione offline.
 
+\section{Le risorse linguistiche nell'NLP}
+Il Natural Language Processing (NLP) è un settore dell'intelligenza artificiale
+che studia i problemi legati a comprensione, analisi e generazione automatica del
+linguaggio naturale (come ad esempio un testo scritto o una conversazione orale).
+Il \textbf{Natural Language Understanding} (NLU) \cite{navigli2018natural} è un argomento
+specifico dell'NLP che riguarda in particolare la capacità delle macchine di leggere
+e comprendere il significato di un testo, e più in generale del linguaggio naturale.
+È facile rendersi conto di quanto sia complesso l'obiettivo che l'NLU si pone,
+per via della grande ambiguità che può avere il linguaggio umano, basti pensare
+ai diversi significati che una stessa frase può assumere in base al contesto del
+discorso.
+Nell'affrontare questa tematica è quindi importante prendere in considerazione
+l'analisi sintattica e semantica.
+
+\paragraph{Cos'è una risorsa linguistica?}
+Per far si che un algoritmo di NLP possa elaborare un testo basandosi su sintassi
+e semantica in maniera automatica è necessario che possa "imparare" a partire
+da dei dati linguistici strutturati.
+Una risorsa contenente questa tipologia di dati e che ne consenta facilmente il
+trattamento e l'analisi da parte di una macchina viene detta \textbf{risorsa linguistica}.
+Da non confondere con i dizionari informatizzati, il cui scopo è limitato a
+fornire informazioni linguistiche sul lessico di una lingua e che sono costruiti
+per essere consultati solamente da un utente umano.
+
+Inizialmente la costruzione di risorse linguistiche avveniva manualmente, come
+ad esempio per WordNet e FrameNet, ma questo richiedeva un grande impegno in
+termini di tempi e costi.
+Solo negli ultimi anni si sono sperimentati altri approcci per la creazione
+delle risorse, da quelli automatici o semi-automatici, in cui parte del lavoro
+viene svolto da una macchina, a quelli collaborativi che sarebbero impensabili
+senza l'ausilio di internet.
+
+\paragraph{WordNet \cite{Miller1990}}
+WordNet è una delle più importanti e storiche risorse linguistiche per l'inglese.
+Il progetto, nato nel 1985 e ancora oggi molto utilizzato, si basa sull'idea
+di creare un dizionario in cui la ricerca non avviene alfabeticamente ma concettualmente.
+All'interno di WordNet le parole sono organizzate in gruppi di sinonimi detti
+\textit{synset}, dall'inglese synonyms set, ciascuno dei quali rappresenta un
+concetto lessicale.
+La struttura è quella di un grafo, in cui i nodi rappresentano i synset e gli archi
+le relazioni lessicali e semantico-concettuali presenti tra loro.
+
+\paragraph{BabelNet \cite{NavigliPonzetto:12aij}}
+Una delle principali risorse linguistiche pubblicate da SapienzaNLP è BabelNet,
+un dizionario enciclopedico multilingue consultabile online\footnote{\url{https://babelnet.org}},
+creato integrando automaticamente risorse come Wikipedia, WordNet, Wiktionary,
+Wikidata e molte altre.
+BabelNet è allo stesso tempo una rete semantica che collega concetti, lemmi
+ed entità nominate tramite delle relazioni semantiche chiamate \textbf{Babel synset}.
+Ogni Babel synset comprende diverse lingue e rappresenta uno specifico significato
+raggruppando tutti i sinonimi che lo esprimono, con relative definizioni ed esempi.
+
+Attualmente BabelNet supporta 284 lingue diverse, per un totale di 15,780,364
+Babel synsets, 808,974,108 sensi, 277,036,611 relazioni semantico-lessicali.
+
+
+
+\section{La necessità della piattaforma}
 Attualmente l'utente ha diverse modalità di accesso e di approvazione per ogni
 risorsa pubblicata, il che può comportare ad esempio di dover gestire diverse
 credenziali di accesso (username e password). Mancano inoltre i moduli per il
