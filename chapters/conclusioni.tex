@@ -69,16 +69,15 @@ possesso dei link di download ricevuti tramite email. Inoltre potrebbe permetter
 la modifica dei dati inseriti in fase di registrazione, attualmente possibile solo
 tramite il pannello di amministrazione.
 
-\paragraph{Valutare tecnologie alternative}
-Essendo stato lo sviluppo e il testing della piattaforma svolto solamente in locale,
-in seguito al rilascio ufficiale si potrebbero effettuare delle nuove valutazioni
-sulle tecnologie utilizzate e sulle scelte effettuate. Ad esempio sulla tipologia
-di database, piuttosto che sul framework per lo sviluppo dell'Application tier.
-Ci possono essere molteplici motivi per cui un cambiamento di questo tipo
-potrebbe rendersi necessario, ad esempio per un discorso di performance o di
-consumi. Importante è quindi aver progettato il sistema per adattarsi facilmente
-anche a modifiche che comporterebbero la sostituzione di un intero livello
-architetturale (v. \autoref{sec:architettura}).
+\paragraph{Anonimizzare gli utenti disabilitati}
+La scelta di disabilitare gli utenti piuttosto che eliminarli è stata fatta per
+garantire consistenza nei dati presenti nel database e mantenere tutte le attività
+svolte dall'utente nonostante non possa più utilizzare la piattaforma.
+Questo però preclude la possibilità di cancellare i dati dell'utente (a meno di
+azione diretta sul database) nel caso si renda necessario ad esempio per esplicita
+richiesta. Si potrebbe pensare ad un sistema di anonimizzazione dell'utente da
+cancellare, applicabile anche automaticamente dopo un lasso di tempo definito dalla
+disabilitazione dell'account.
 
 \paragraph{Possibilità di apporre Firma Digitale per i moduli pdf}
 Una funzionalità che potrebbe migliorare la fruibilità della procedura di richiesta
@@ -104,3 +103,14 @@ non avrebbe l’obiettivo di eliminare tutta la fase di registrazione
 (v. \autoref{subsec:authentication}), ma di offrire un’alternativa all’utente che
 permetta l'autocompilazione dei dati anagrafici e l'accettazione dei termini di
 licenza per le risorse richieste senza necessità di firmare un modulo pdf.
+
+\paragraph{Valutare tecnologie alternative}
+Essendo stato lo sviluppo e il testing della piattaforma svolto solamente in locale,
+in seguito al rilascio ufficiale si potrebbero effettuare delle nuove valutazioni
+sulle tecnologie utilizzate e sulle scelte effettuate. Ad esempio sulla tipologia
+di database, piuttosto che sul framework per lo sviluppo dell'Application tier.
+Ci possono essere molteplici motivi per cui un cambiamento di questo tipo
+potrebbe rendersi necessario, ad esempio per un discorso di performance o di
+consumi. Importante è quindi aver progettato il sistema per adattarsi facilmente
+anche a modifiche che comporterebbero la sostituzione di un intero livello
+architetturale (v. \autoref{sec:architettura}).
