@@ -82,6 +82,27 @@ e che sia autorizzato ad effettuare eventuali operazioni riservate (ad esempio
 accedere al pannello di amministrazione).
 
 
+\section{Generazione dei moduli pdf}
+Per quanto riguarda il modulo pdf che l'utente deve firmare per richiedere
+l'accesso alle risorse, è stato scelto di effettuare una generazione dinamica del
+contenuto di modo da essere già compilato piuttosto che utilizzare un template
+con campi vuoti.
+In questo modo il modulo conterrà le licenze specifiche per le risorse richieste
+e un resoconto con i dati dell'utente, in quanto già disponibili nel sistema vista
+la registrazione obbligatoria.
+Vengono inoltre aggiunti dei metadati relativi alle risorse selezionate e alla
+descrizione inserita rispetto all'utilizzo previsto.
+
+L'aggiunta dei metadati garantisce di poter effettuare un controllo automatico
+sulla validità del documento che viene caricato, infatti se questi non sono
+presenti o risultano in un formato errato, sicuramente il modulo non sarà
+stato generato dal sistema e di conseguenza si potrà ignorare la richiesta.
+Salvare i dati inseriti dall'utente nei metadati del pdf permette inoltre di
+poterne effettuare l'inserimento nel database solo nel momento in cui viene
+effettuato l'upload e la validazione del documento, che conterrà quindi dati
+corretti.
+
+
 \section{Diagramma ER}
 
 \begin{wrapfigure}{r}{0.4\textwidth}
