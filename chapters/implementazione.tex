@@ -44,7 +44,7 @@ manterrebbe gli stessi metodi e non necessiterebbe quindi di effettuare ulterior
 modifiche di adattamento.
 
 \paragraph{Project Lombok}
-Una libreria open source che è stata molto utilizzata per ridurre i tempi di
+Una libreria open source che è stata ampiamente utilizzata per ridurre i tempi di
 scrittura e migliorare la leggibilità del codice è \textbf{Project Lombok};
 un \textit{Annotation processor} che, tramite delle annotazioni nel codice,
 sostituisce la scrittura di metodi molto comuni e simili tra loro (come
@@ -160,7 +160,7 @@ Si tratta di un linguaggio di programmazione open-source che estende la sintassi
 di JavaScript, rendendo compatibile il codice scritto con quest'ultimo per il
 compilatore TypeScript. La compilazione in questo caso (detta anche
 "transpilazione") produce infatti codice JavaScript.
-Il motivo per cui viene utilizzata questo linguaggio è dovuto alla caratteristica
+Il motivo per cui viene utilizzato questo linguaggio è dovuto alla caratteristica
 di JavaScript per cui non vengono effettuati controlli statici sui tipi di dato,
 che vengono convertiti implicitamente. Anche se questa caratteristica è stata uno
 dei motivi del suo successo, la mancanza di controlli all'atto della compilazione
@@ -198,10 +198,10 @@ parametri richiesti dalle API. Ad ogni richiesta viene aggiunto il token relativ
 alla sessione come header di autorizzazione e aggiornato con quello che si riceve
 nella risposta del server.
 Questa funzione ritorna una \textbf{Promise} \cite{mdn:promise}, ovvero un oggetto
-che rappresenta un'operazione che non è stata ancora completata, utile per gestire
-computazioni asincrone. La richiesta AJAX all'interno del costruttore viene eseguita
-contemporaneamente alla creazione della Promise, associando il valore ritornato
-dal server in caso di successo alla funzione \texttt{resolve} o l'eventuale
+che rappresenta un'operazione che non è stata ancora completata, ma lo sarà in futuro,
+utile per gestire computazioni asincrone. La richiesta AJAX all'interno del costruttore
+viene eseguita contemporaneamente alla creazione della Promise, associando il valore
+ritornato dal server in caso di successo alla funzione \texttt{resolve} o l'eventuale
 errore alla funzione \texttt{reject}.
 In questo modo i widget che necessitano di effettuare delle richieste API,
 possono utilizzare una funzione specifica che si occupa di effettuare la richiesta
@@ -248,8 +248,8 @@ sulle richieste (v. \autoref{subsec:submissions-list}).
 \end{figure}
 
 \subsubsection{Selezione delle risorse} \label{subsec:resources-selection}
-Come in tutte le altre schermate della home, l'interfaccia è divisa in due parti,
-con sulla sinistra una sidebar placeholder con i riferimenti Sapienza e sulla
+Come in tutte le altre schermate della home, l'interfaccia è divisa in due parti:
+sulla sinistra una sidebar placeholder con i riferimenti Sapienza e sulla
 destra il widget principale. In questa schermata il widget si occupa di richiedere
 e mostrare la lista di tutte le risorse disponibili, oltre che di gestirne la
 selezione multipla e il filtro per parola chiave tramite la barra di ricerca.
@@ -280,9 +280,9 @@ L'ultimo passo per richiedere l'accesso alle risorse è quello di effettuare
 l'upload del modulo pdf firmato. Questa operazione è stata implementata con un
 widget per gestire anche il drag and drop e i controlli sulla tipologia e sulla
 dimensione del file. Una volta effettuato il \textit{submit}, il server si occupa
-in ogni caso di controllare che il file sia in un formato valido e che contenga
-dei metadati di validazione e, in caso di successo, il client mostra una
-schermata di conferma (v. \autoref{fig:request-success}).
+di controllare che il file sia in un formato valido e che contenga dei metadati
+di validazione e, in caso di successo, il client mostra una schermata di conferma
+(v. \autoref{fig:request-success}).
 
 \begin{figure}[H]
 	\centering
@@ -337,7 +337,7 @@ i dati e visualizare la cronologia delle azioni effettuate (richieste sottomesse
 o cambi di stato in base alla tipologia di utente). Per il widget relativo alla
 cronologia è stato riutilizzato quello già presente nel dettaglio delle richieste
 grazie all'approccio modulare basato su componenti che favorisce il riuso del codice.
-Allo stesso modo, per creare un nuovo utente viene utilizzando lo stesso widget
+Allo stesso modo, per creare un nuovo utente viene utilizzato lo stesso widget
 che in \autoref{fig:user-details} permette la modifica dei dati di uno già esistente.
 
 \begin{figure}[H]
