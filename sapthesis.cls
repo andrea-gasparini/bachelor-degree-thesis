@@ -1096,7 +1096,7 @@
   \newcommand{\SAP@AbstractLabel}{Sommario}
   \newcommand{\SAP@AcademicYearLabel}{Anno Accademico}
   \newcommand{\SAP@allRightsReservedLabel}{Tutti i diritti riservati}
-  \newcommand{\SAP@sapthesisInformationLabel}{Questa tesi \`e stata composta con \LaTeX\ e la classe Sapthesis}
+  \newcommand{\SAP@sapthesisInformationLabel}{Questa relazione \`e stata composta con \LaTeX\ e la classe Sapthesis}
   \newcommand{\SAP@emailLabel}{Email dell'autore}}
 
   
