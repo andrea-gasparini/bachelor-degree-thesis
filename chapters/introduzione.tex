@@ -114,15 +114,26 @@ le licenze più accessibili possibile, vengono rese disponibili in 3 diversi "li
 
 
 \section{La necessità della piattaforma}
-Attualmente l'utente ha diverse modalità di accesso e di approvazione per ogni
-risorsa pubblicata, il che può comportare ad esempio di dover gestire diverse
-credenziali di accesso (username e password). Mancano inoltre i moduli per il
-consenso esplicito dell'utente all'utilizzo nel rispetto delle relative licenze.
+Attualmente le modalità di accesso e di approvazione per le risorse pubblicate
+da SapienzaNLP sono molteplici e diverse tra loro: per alcune è
+necessario effettuare una richiesta tramite email, per altre è disponibile il download
+diretto tramite la repository su GitHub, ma è anche possibile che sia necessario
+registrarsi con i propri dati sulla pagina web relativa alla risorsa e successivamente
+attendere che venga approvata la richiesta.
+La frammentarietà di questo approccio consente di evidenziare in particolare tre problemi:
+\begin{itemize}
+	\item non tutte le modalità di accesso verificano che l'utente approvi esplicitamente
+	le licenze d'uso con cui vengono fornite le risorse
+	\item l'utente può trovarsi a dover gestire più credenziali d'accesso (username
+	e password) per le pagine web da cui scaricare le relative risorse
+	\item la gestione e l'approvazione degli accessi risulta essere complessa
+\end{itemize}
+
 Lo scopo è quindi quello di avere un unico portale per richiedere l'accesso alle
 risorse, gestire lo stato di approvazione delle richieste e far approvare
 esplicitamente le modalità con cui è concesso l'utilizzo dei dati.
 
-Tramite la piattaforma è possibile infatti visualizzare tutte le risorse
+La piattaforma sviluppata rende possibile visualizzare tutte le risorse
 disponibili per il download e selezionarne una o più per richiederne l'accesso.
 Fornisce inoltre un modulo pdf, generato dinamicamente, contenente le clausole
 specifiche da dover firmare per poter effettuare la richiesta. La possibilità di
