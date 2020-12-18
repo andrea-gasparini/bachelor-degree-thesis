@@ -5,4 +5,4 @@ in Computer Science at "La Sapienza", University of Rome.
 
 The thesis is written in Italian.
 
-[Directly download](https://github.com/andrea-gasparini/bachelor-degree-thesis/releases/download/final/relazione.pdf) the final `pdf` version or clone the repo and compile with `make`.
+[Directly download](https://github.com/andrea-gasparini/bachelor-degree-thesis/raw/master/relazione.pdf) the final `pdf` version or clone the repo and compile with `make`.
